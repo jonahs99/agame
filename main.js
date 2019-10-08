@@ -75,7 +75,7 @@ function update() {
 		const row = Math.floor(i / n)
 		const col = i % n
 
-		const nbd = [ idx(row, col + 1), idx(row - 1, col), idx(row, col - 1), idx(row + 1, col) ]
+		const nbd = [ idx(row, col + 1), idx(row - 1, col), idx(row, col - 1), idx(row + 1, col) ].map(j => state[j])
 
 		const probs = agent.strategy(agent, nbd)
 		const action = pick(probs)
