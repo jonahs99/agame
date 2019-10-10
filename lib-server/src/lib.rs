@@ -118,4 +118,8 @@ impl <I, O> ws::Handler for Handler<I, O>
         }
         Ok(())
     }
+
+    fn on_error(&mut self, error: ws::Error) {
+        println!("{:?}", error);
+    }
 }
