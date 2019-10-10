@@ -1,3 +1,4 @@
+
 const n = 25
 const tileWidth = 32
 
@@ -16,12 +17,12 @@ function start() {
 
 	canvas.style.background = '#222'
 
-	for (let i = 0; i < 100; i++) {
+	for (let i = 0; i < 50; i++) {
 		const j = Math.floor(Math.random() * n * n)
 		state[j] = {
 			team: 0,
 			level: 1,
-			strategy: disperseStrategy,
+			strategy: rainDrops,
 		}
 	}
 
@@ -32,8 +33,8 @@ function loop() {
 	update()
 	draw()
 
-	requestAnimationFrame(loop)
-	//setTimeout(loop, 1000)
+	//requestAnimationFrame(loop)
+	setTimeout(loop, 1)
 }
 
 function draw() {
@@ -138,4 +139,14 @@ function disperseStrategy(agent, nbd) {
 	return nbd.map((nbr, i) => [{ dir: dirs[i], amount: agent.level }, nbr ? 0.00001 : 1])
 }
 
+function moveLeftToRightStrategy(agent, nbd) {	
+	const dirs = [[0, 1], [-1, 0], [0, -1], [1, 0]]
+	return dirs.map(dir => [{dir, amount: agent.level}, (dir[0] == 0 && dir[1] == 1)? 1: 0.001])
+}
+
+
+function rainDrops(agent, nbd) {	
+	const dirs = [[0, 1], [-1, 0], [0, -1], [1, 0]]
+	return dirs.map(dir => [{dir, amount: agent.level}, (dir[0] == 1)? 1: 0.001])
+}
 window.onload = start
