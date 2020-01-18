@@ -20,7 +20,7 @@ struct Grid {
 fn main() {
     let (mut message_server, listener) = server::new::<Input, Output>(4);
 
-    listener.listen_on_thread("127.0.0.1:5000");
+    listener.listen_on_thread("100.64.182.240:5000");
 
     loop {
         for (id, msg) in message_server.messages() {

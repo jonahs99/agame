@@ -1,5 +1,4 @@
-
-const testIP = "ws://100.65.161.131:5000/";
+const testIP = "ws://100.64.182.240:5000";
 const socket = new WebSocket(testIP);
 
  socket.addEventListener('open', function (event) {
